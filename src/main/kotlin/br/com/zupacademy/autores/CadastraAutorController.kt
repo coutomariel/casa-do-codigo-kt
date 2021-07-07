@@ -1,6 +1,6 @@
 package br.com.zupacademy.autores
 
-import br.com.zupacademy.domain.entities.NovoAutorRequest
+import br.com.zupacademy.domain.repositories.AutoresRepository
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
@@ -9,10 +9,12 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autores")
-class CadastraAutorController {
+class CadastraAutorController (val autoresRepository: AutoresRepository){
 
     @Post
     fun cadastra(@Body @Valid request: NovoAutorRequest){
-        println(request)
+        val autor = request.paraAutor()
+        println(autor)
+        autoresRepository.save(autor)
     }
 }
