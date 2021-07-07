@@ -1,5 +1,6 @@
-package br.com.zupacademy.domain.entities
+package br.com.zupacademy.autores
 
+import br.com.zupacademy.domain.entities.Autor
 import io.micronaut.core.annotation.Introspected
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
