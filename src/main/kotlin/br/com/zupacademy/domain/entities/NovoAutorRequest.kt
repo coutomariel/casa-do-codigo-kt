@@ -10,5 +10,9 @@ import javax.validation.constraints.Size
 data class NovoAutorRequest(
     @field:NotBlank val nome: String,
     @field:NotEmpty @field:Email val email: String,
-    @field:NotBlank @field:Size(max = 2 ) val descricao: String
-)
+    @field:NotBlank @field:Size(max = 400 ) val descricao: String
+) {
+    fun paraAutor(): Autor {
+        return Autor(nome, email, descricao)
+    }
+}
