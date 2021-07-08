@@ -6,12 +6,14 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Put
 import io.micronaut.validation.Validated
+import javax.transaction.Transactional
 
 @Validated
 @Controller("/autores/{id}")
 class AtualizaAutorController(val autoresRepository: AutoresRepository) {
 
     @Put
+    @Transactional
     fun atualiza(@PathVariable id: Long, descricao: String): HttpResponse<Any> {
         if (!autoresRepository.existsById(id)) {
             return HttpResponse.notFound()
