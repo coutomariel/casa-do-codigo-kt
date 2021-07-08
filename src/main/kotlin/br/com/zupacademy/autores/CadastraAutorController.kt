@@ -1,5 +1,6 @@
 package br.com.zupacademy.autores
 
+import br.com.zupacademy.autores.client.endereco.EnderecoClient
 import br.com.zupacademy.autores.request.NovoAutorRequest
 import br.com.zupacademy.domain.repositories.AutoresRepository
 import io.micronaut.http.HttpResponse
@@ -13,12 +14,15 @@ import javax.validation.Valid
 
 @Validated
 @Controller("/autores")
-class CadastraAutorController (val autoresRepository: AutoresRepository){
+class CadastraAutorController (val autoresRepository: AutoresRepository, val enderecoClient: EnderecoClient){
 
     @Post
     @Transactional
     fun cadastra(@Body @Valid request: NovoAutorRequest) : HttpResponse<Any>{
-        val autor = request.paraAutor()
+
+        val enderecoResponse = enderecoClient.consulta(request.cep)
+
+        val autor = request.paraAutor(enderecoResponse.body())!!
         val autorSalvo = autoresRepository.save(autor)
         val uri = UriBuilder.of("/autores/{id}").expand(mutableMapOf(Pair("id", autorSalvo.id)))
         return HttpResponse.created(uri)
