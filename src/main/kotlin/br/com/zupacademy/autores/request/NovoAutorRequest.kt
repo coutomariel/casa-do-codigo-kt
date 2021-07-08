@@ -1,4 +1,4 @@
-package br.com.zupacademy.autores
+package br.com.zupacademy.autores.request
 
 import br.com.zupacademy.domain.entities.Autor
 import io.micronaut.core.annotation.Introspected

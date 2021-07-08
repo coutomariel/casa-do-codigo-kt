@@ -1,12 +1,12 @@
 package br.com.zupacademy.autores
 
+import br.com.zupacademy.autores.response.DetalhesAutorResponse
 import br.com.zupacademy.domain.entities.Autor
 import br.com.zupacademy.domain.repositories.AutoresRepository
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
-import javax.swing.Spring
 
 @Controller("/autores")
 class BuscaAutoresController(val autoresRepository: AutoresRepository) {

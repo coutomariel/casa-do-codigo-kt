@@ -1,5 +1,6 @@
 package br.com.zupacademy.autores
 
+import br.com.zupacademy.autores.request.NovoAutorRequest
 import br.com.zupacademy.domain.repositories.AutoresRepository
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
