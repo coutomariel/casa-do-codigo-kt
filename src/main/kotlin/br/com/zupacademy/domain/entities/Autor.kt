@@ -7,10 +7,10 @@ import javax.persistence.Id
 
 @Entity
 class Autor(
-    val nome: String,
-    val email: String,
+    var nome: String,
+    var email: String,
     var descricao: String,
-    val endereco: Endereco
+    var endereco: Endereco
 ) {
     @Id
     @GeneratedValue

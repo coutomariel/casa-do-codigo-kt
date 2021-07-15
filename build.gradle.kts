@@ -50,6 +50,7 @@ dependencies {
     // MYSQL
     implementation("mysql:mysql-connector-java:8.0.25")
 
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
 }
 
 

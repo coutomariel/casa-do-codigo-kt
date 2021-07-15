@@ -16,15 +16,15 @@ class BuscaAutoresController(val autoresRepository: AutoresRepository) {
 
         if (email.isBlank()) {
             val autores: List<Autor> = autoresRepository.findAll()
-            val response = autores.map { autor -> DetalhesAutorResponse(autor) }
+            val response = autores.map { autor -> DetalhesAutorResponse(autor.nome, autor.email, autor.descricao) }
             return HttpResponse.ok(response)
         }
 
-        val autorPorEmail = autoresRepository.findByEmail(email)
-        if(autorPorEmail.isEmpty){
+        val possivelAutor = autoresRepository.findByEmail(email)
+        if(possivelAutor.isEmpty){
             return HttpResponse.notFound()
         }
-
-        return HttpResponse.ok(autorPorEmail.get())
+        val autor =  possivelAutor.get()
+        return HttpResponse.ok(DetalhesAutorResponse(autor.nome, autor.email, autor.descricao))
     }
 }
